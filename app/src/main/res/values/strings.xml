@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Food Nutrition Project</string>
+    <string name="main_button_search">Search</string>
+    <string name="main_button_favorite">Favorite</string>
+    <string name="main_button_guide">Guide</string>
+    <string name="main_button_credit">Credit</string>
+    <string name="main_footer">Food Nutrition Project</string>
+</resources>

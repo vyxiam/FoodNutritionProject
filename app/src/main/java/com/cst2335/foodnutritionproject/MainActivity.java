@@ -1,0 +1,57 @@
+package com.cst2335.foodnutritionproject;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+
+import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
+import com.cst2335.foodnutritionproject.databinding.ActivityMainBinding;
+
+/**
+ * This Activity is the main activity of the project which is the entrance of the Food Nutrition app.
+ * This inflates the activity main layout using ViewBinding and uses the activity_main layout.
+ *
+ * @author Van Vy Nguyen
+ * @see CustomViewUtility
+ * @version 1.0
+ */
+public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding mainBinding;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
+
+        initialization();
+    }
+
+    /**
+     * This private method is used to initialize the main activity by setting up the logo, buttons
+     * with customized attributes
+     */
+    private void initialization(){
+        setUpLogo();
+    }
+
+    /**
+     * This private method is used to setup the main logo of the main Activity. The logo section in
+     * the layout contains 2 ImageViews (logo, logoBackground) and this method is used to control
+     * them.
+     * It sets the elevation of the logo to make it appear in front of the background and then uses
+     * the ImageViewUtility class static method to crop the logo and apply the animation for the
+     * background.
+     */
+    private void setUpLogo(){
+        mainBinding.mainLogo.setElevation(2f);
+        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
+        mainBinding.mainLogo.setImageBitmap(CustomViewUtility.getRoundedBitmap(logoBitmap,30));
+        Animation circleRotation = AnimationUtils.loadAnimation(this, R.anim.circle_rotation);
+        mainBinding.mainLogoBackground.startAnimation(circleRotation);
+    }
+}
