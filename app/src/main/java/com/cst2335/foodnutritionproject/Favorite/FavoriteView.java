@@ -19,7 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cst2335.foodnutritionproject.Data.Food;
+import com.cst2335.foodnutritionproject.Data.FoodDAO;
+import com.cst2335.foodnutritionproject.Data.FoodDatabase;
 import com.cst2335.foodnutritionproject.R;
+import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
 
 import java.util.ArrayList;
@@ -36,12 +40,12 @@ public class FavoriteView extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     FragmentFavoriteBinding binding;
-    ArrayList<FavoriteList> favoriteLists;
+    ArrayList<Food> favoriteLists;
     private RecyclerView.Adapter myAdapter;
-    private MessageDatabase db;
-    private ChatMessageDAO mDAO;
-    private ChatRoomViewModel viewModel;
-    private OnItemSelectedListener mItemListener;
+    private FoodDatabase db;
+    private FoodDAO mDAO;
+    private FavoriteViewModel viewModel;
+    private FoodDetails mItemListener;
 
 
 
@@ -87,7 +91,7 @@ public class FavoriteView extends Fragment {
     View view=binding.getRoot();
     // interact with database
         db = FoodDatabase.getInstance(requireContext());
-        mDAO = db.chatMessageDAO();
+        mDAO = db.foodDAO();
         loadAllFoods();
         if(favoriteLists == null)
             favoriteLists = new ArrayList<>();
@@ -171,9 +175,9 @@ public class FavoriteView extends Fragment {
      * This method will load all the foods from the database into the Food field using a
      * separate thread.
      */
-    private void loadAllMessages(){
+    private void loadAllFoods(){
         new Thread(() -> {
-            favoriteLists.addAll(mDAO.getAllFoods());
+            favoriteLists.addAll(mDAO.getAllFood());
         }).start();
     }
     /**
@@ -199,7 +203,7 @@ public class FavoriteView extends Fragment {
      * @param position the current click position
      * @return the clicked food
      */
-    public ChatMessage getClickedMessage(int position){
+    public Food getClickedFavorite(int position){
         return favoriteLists.get(position);
     }
 
@@ -216,7 +220,7 @@ public class FavoriteView extends Fragment {
         myAdapter.notifyDataSetChanged();
     }
 
-    public void setViewModel(ChatRoomViewModel viewModel) {
+    public void setViewModel(FavoriteViewModel viewModel) {
         this.viewModel = viewModel;
     }
  }

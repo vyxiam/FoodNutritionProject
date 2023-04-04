@@ -21,4 +21,15 @@
     <string name="details_na">N/A</string>
     <string name="details_food_exist">You already have this food in your list</string>
     <string name="details_food_new">Added to your list!!!</string>
+    // String for favorite fragment
+    <string name="unfavorite">UNFAVORITE</string>
+    <string name="favoriteFoodTitle">FOOD</string>
+    <string name="caloriesTitle">CALORIES</string>
+    <string name="proteinTitle">PROTEIN</string>
+    <string name="carbohydrateTitle">CARBOHYDRATE</string>
+    <string name="fatTitle">FAT</string>
+    <string name="fiberTitle">FIBER</string>
+    <string name="desciptionTitle">Desciption</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

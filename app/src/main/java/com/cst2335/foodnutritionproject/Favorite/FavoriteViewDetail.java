@@ -96,7 +96,7 @@ public class FavoriteViewDetail extends Fragment {
     private void setUpLogo(){
         binding.mainLogo.setElevation(2f);
         Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
-        binding.mainLogo.setImageBitmap(CustomViewUtility.getRoundedBitmap(logoBitmap,30));
+        binding.mainLogo.setImageBitmap(CustomViewUtility.getViewUtilityClass().getRoundedBitmap(logoBitmap,30));
         Animation circleRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.circle_rotation);
         binding.mainLogoBackground.startAnimation(circleRotation);
     }
@@ -125,22 +125,20 @@ public class FavoriteViewDetail extends Fragment {
     public void loadDetails(Bundle bundle){
         double calories = bundle.getDouble("CALORIES");
         double protein = bundle.getDouble("PROTEIN");
-        double cabohydrate = bundle.getDouble("cabohydrate");
+        double carbohydrate = bundle.getDouble("CARBOHYDRATE");
         double fat = bundle.getDouble("FAT");
         double fiber = bundle.getDouble("FIBER");
+        String description =bundle.getString("Description");
 
-        int id = bundle.getInt("ID");
+
 
         binding.caloriesText.setText(Double.toString(calories));
         binding.proteintext.setText(Double.toString(protein));
-        binding.carbonhydrateText.setText(Double.toString(cabohydrate));
+        binding.carbonhydrateText.setText(Double.toString(carbohydrate));
         binding.fatText.setText(Double.toString(fat));
         binding.fiberText.setText(Double.toString(fiber));
-
-        binding.idContent.setText(String.valueOf("ID:  " + id));
+        binding.descriptionText.setText(description);
     }
 
-    public void setViewModel(ChatRoomViewModel viewModel) {
-        this.viewModel = viewModel;
-    }
+
 }
