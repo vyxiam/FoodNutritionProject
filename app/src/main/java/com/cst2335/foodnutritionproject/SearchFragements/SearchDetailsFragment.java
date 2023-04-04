@@ -8,19 +8,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.cst2335.foodnutritionproject.Data.Food;
+import com.cst2335.foodnutritionproject.Data.FoodDAO;
+import com.cst2335.foodnutritionproject.Data.FoodDatabase;
 import com.cst2335.foodnutritionproject.Data.Nutrient;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentSearchDetailsBinding;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +46,11 @@ public class SearchDetailsFragment extends Fragment {
     private String mParam2;
 
     private FragmentSearchDetailsBinding fragmentSearchDetailsBinding;
+    private Food food;
+    private FoodDatabase database;
+    private FoodDAO foodDAO;
+    private List<Food> foodList;
+    private CountDownLatch latch;
     public SearchDetailsFragment() {
         // Required empty public constructor
     }
@@ -75,6 +87,7 @@ public class SearchDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         fragmentSearchDetailsBinding = FragmentSearchDetailsBinding.inflate(getLayoutInflater());
         View view = fragmentSearchDetailsBinding.getRoot();
+        Log.e("VIEW", "View Create");
         initialize();
         return view;
     }
@@ -90,33 +103,79 @@ public class SearchDetailsFragment extends Fragment {
     }
 
     private void initialize(){
+        if (foodList == null)
+            foodList = new ArrayList<>();
         fragmentSearchDetailsBinding.detailsFoodLogo.setElevation(2f);
         Bitmap foodLogo = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
         fragmentSearchDetailsBinding.detailsFoodLogo.setImageBitmap(CustomViewUtility.getViewUtilityClass().getRoundedBitmap(foodLogo,50));
         Animation circleRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.circle_rotation);
         fragmentSearchDetailsBinding.detailsFoodBackground.startAnimation(circleRotation);
+        fragmentSearchDetailsBinding.detailsFavoriteButton.setOnClickListener(view -> favoriteButtonBehave());
     }
 
-    private void loadDetails(Bundle bundle){
-        Food food = new Food();
+    private void favoriteButtonBehave(){
+        boolean isExistInDatabase = checkDatabaseContent(food.getFoodID());
+        if (isExistInDatabase){
+            Toast.makeText(requireContext(), getResources().getString(R.string.details_food_exist), Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(requireContext(), getResources().getString(R.string.details_food_new), Toast.LENGTH_SHORT).show();
+            favoriteFood(food);
+        }
+    }
+
+    public void loadDetails(Bundle bundle){
+        if (food == null)
+            food = new Food();
+
         food.setFoodID(bundle.getString("ID"));
         food.setLabel(bundle.getString("NAME"));
         food.setFoodContentsLabel(bundle.getString("DESCRIPTION"));
         double[] nutrients = bundle.getDoubleArray("NUTRIENTS");
-        Nutrient nutrient = new Nutrient(nutrients[0],nutrients[1],nutrients[2],nutrients[3],nutrients[4]);
-        food.setNutrient(nutrient);
+        food.setCalories(nutrients[0]);
+        food.setProtein(nutrients[1]);
+        food.setFat(nutrients[2]);
+        food.setCarbohydrate(nutrients[3]);
+        food.setFiber(nutrients[4]);
 
         fragmentSearchDetailsBinding.detailsTitle.setText(food.getLabel());
         fragmentSearchDetailsBinding.detailsDescriptionContent.setText(food.getFoodContentsLabel());
         fragmentSearchDetailsBinding.detailsCaloriesValue.setText(
-                String.format(Locale.CANADA, Double.toString(food.getNutrient().getCalories())));
+                String.format("%.2f", food.getCalories()));
         fragmentSearchDetailsBinding.detailsProteinValue.setText(
-                String.format(Locale.CANADA,Double.toString(food.getNutrient().getProtein())));
+                String.format("%.2f",food.getProtein()));
         fragmentSearchDetailsBinding.detailsFatValue.setText(
-                String.format(Locale.CANADA,Double.toString(food.getNutrient().getFat())));
+                String.format("%.2f",food.getFat()));
         fragmentSearchDetailsBinding.detailsCarbValue.setText(
-                String.format(Locale.CANADA,Double.toString(food.getNutrient().getCarbohydrate())));
+                String.format("%.2f",food.getCarbohydrate()));
         fragmentSearchDetailsBinding.detailsFiberValue.setText(
-                String.format(Locale.CANADA,Double.toString(food.getNutrient().getCarbohydrate())));
+                String.format("%.2f",food.getCarbohydrate()));
+    }
+
+    private boolean checkDatabaseContent(String foodID){
+        database = FoodDatabase.getInstance(requireContext());
+        foodDAO = database.foodDAO();
+        latch = new CountDownLatch(1);
+        getAllFoodInDatabase();
+        try{latch.await();}
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        boolean result = foodList.stream().anyMatch(food -> food.getFoodID().equals(foodID));
+        return result;
+    }
+
+    private void getAllFoodInDatabase(){
+        new Thread(() -> {
+            foodList.addAll(foodDAO.getAllFood());
+            latch.countDown();
+        }).start();
+    }
+
+    private void favoriteFood(Food food){
+        new Thread(() -> {
+            foodDAO.addFood(food);
+        }).start();
     }
 }

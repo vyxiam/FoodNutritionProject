@@ -16,6 +16,9 @@
     <string name="details_fat">FAT</string>
     <string name="details_carb">CARBOHYDRATE</string>
     <string name="details_fiber">FIBER</string>
-    <string name="details_favorite_button">FAVORITE</string>
+    <string name="details_favorite_button_false">FAVORITE</string>
+    <string name="details_favorite_button_true">UNFAVORITE</string>
     <string name="details_na">N/A</string>
+    <string name="details_food_exist">You already have this food in your list</string>
+    <string name="details_food_new">Added to your list!!!</string>
 </resources>

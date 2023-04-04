@@ -1,24 +1,70 @@
 package com.cst2335.foodnutritionproject.Data;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Food")
+@Entity
 public class Food {
     @PrimaryKey
+    @NonNull
     private String foodID;
     @ColumnInfo(name = "Label")
     private String label;
     @ColumnInfo(name = "KnownAs")
     private String knownAs;
-    @ColumnInfo(name = "Nutrient")
-    private Nutrient nutrient;
     @ColumnInfo(name = "Contents")
     private String foodContentsLabel;
+    @ColumnInfo(name = "Calories")
+    private double calories;
+    @ColumnInfo(name = "Protein")
+    private double protein;
+    @ColumnInfo(name = "Fat")
+    private double fat;
+    @ColumnInfo(name = "Carbohydrate")
+    private double carbohydrate;
+    @ColumnInfo(name = "Fiber")
+    private double fiber;
 
-    public Food(){
-        this.nutrient = new Nutrient();
+    public double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(double calories) {
+        this.calories = calories;
+    }
+
+    public double getProtein() {
+        return protein;
+    }
+
+    public void setProtein(double protein) {
+        this.protein = protein;
+    }
+
+    public double getFat() {
+        return fat;
+    }
+
+    public void setFat(double fat) {
+        this.fat = fat;
+    }
+
+    public double getCarbohydrate() {
+        return carbohydrate;
+    }
+
+    public void setCarbohydrate(double carbohydrate) {
+        this.carbohydrate = carbohydrate;
+    }
+
+    public double getFiber() {
+        return fiber;
+    }
+
+    public void setFiber(double fiber) {
+        this.fiber = fiber;
     }
 
     public String getFoodID() {
@@ -43,14 +89,6 @@ public class Food {
 
     public void setKnownAs(String knownAs) {
         this.knownAs = knownAs;
-    }
-
-    public Nutrient getNutrient() {
-        return nutrient;
-    }
-
-    public void setNutrient(Nutrient nutrient) {
-        this.nutrient = nutrient;
     }
 
     public String getFoodContentsLabel() {

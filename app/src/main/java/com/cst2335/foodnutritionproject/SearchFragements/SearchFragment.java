@@ -22,7 +22,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cst2335.foodnutritionproject.Data.Food;
-import com.cst2335.foodnutritionproject.Data.Nutrient;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentSearchBinding;
@@ -311,13 +310,12 @@ public class SearchFragment extends Fragment {
                 else
                     food.setFoodContentsLabel(element.getString("categoryLabel"));
 
-                Nutrient nutrient = food.getNutrient();
                 JSONObject nutrients = element.getJSONObject("nutrients");
-                nutrient.setCalories(nutrients.getDouble("ENERC_KCAL"));
-                nutrient.setProtein(nutrients.getDouble("PROCNT"));
-                nutrient.setFat(nutrients.getDouble("FAT"));
-                nutrient.setCarbohydrate(nutrients.getDouble("CHOCDF"));
-                nutrient.setFiber(nutrients.getDouble("FIBTG"));
+                food.setCalories(nutrients.getDouble("ENERC_KCAL"));
+                food.setProtein(nutrients.getDouble("PROCNT"));
+                food.setFat(nutrients.getDouble("FAT"));
+                food.setCarbohydrate(nutrients.getDouble("CHOCDF"));
+                food.setFiber(nutrients.getDouble("FIBTG"));
                 doneFetching = true;
             }
             catch (JSONException e){

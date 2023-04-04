@@ -50,16 +50,17 @@ public class SearchActivity extends AppCompatActivity implements FoodDetails {
         bundle.putString("ID", food.getFoodID());
         bundle.putString("NAME", food.getLabel());
         bundle.putString("DESCRIPTION", food.getFoodContentsLabel());
-        Nutrient nutrient = food.getNutrient();
-        double[] nutrients = {nutrient.getCalories(),nutrient.getProtein(),nutrient.getFat(),nutrient.getCarbohydrate(),nutrient.getFiber()};
+        double[] nutrients = {food.getCalories(),food.getProtein(),food.getFat(),food.getCarbohydrate(),food.getFiber()};
         bundle.putDoubleArray("NUTRIENTS",nutrients);
-        detailsFragment.setArguments(bundle);
+
 
         if (detailsFrameLayout == null) { //phone is on use
+            detailsFragment.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.searchFrame,detailsFragment).addToBackStack("searchFragment").commit();
         }
 
         if (detailsFrameLayout != null){ //tablet is on use
+            detailsFragment.loadDetails(bundle);
             fragmentManager.beginTransaction().replace(R.id.detailsFrame,detailsFragment).commit();
         }
     }
