@@ -2,6 +2,7 @@ package com.cst2335.foodnutritionproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -26,17 +27,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(mainBinding.getRoot());
+        setContentView(mainBinding.getRoot()); //inflate the layout using binding
 
-        initialization();
+        initialize(); //initialize the Views in the layout
+
+        mainBinding.mainSearchButton.setOnClickListener(view -> toSearchActivity()); //search button
     }
 
     /**
      * This private method is used to initialize the main activity by setting up the logo, buttons
-     * with customized attributes
+     * with customized attributes. Also, it sets the CustomViewUtility field screenHeight to store
+     * device's screen height for later use.
      */
-    private void initialization(){
+    private void initialize(){
         setUpLogo();
+        CustomViewUtility.getViewUtilityClass().setScreenHeight(getResources().getDisplayMetrics().heightPixels);
     }
 
     /**
@@ -50,8 +55,18 @@ public class MainActivity extends AppCompatActivity {
     private void setUpLogo(){
         mainBinding.mainLogo.setElevation(2f);
         Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.logo);
-        mainBinding.mainLogo.setImageBitmap(CustomViewUtility.getRoundedBitmap(logoBitmap,30));
+        mainBinding.mainLogo.setImageBitmap(CustomViewUtility.getViewUtilityClass().getRoundedBitmap(logoBitmap,30));
         Animation circleRotation = AnimationUtils.loadAnimation(this, R.anim.circle_rotation);
         mainBinding.mainLogoBackground.startAnimation(circleRotation);
+    }
+
+    /**
+     * This private helper method is used to define the action of SEARCH button in the layout
+     * Note:
+     * - This method is used for refactoring purpose to improve coupling and cohesion
+     */
+    private void toSearchActivity(){
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 }
