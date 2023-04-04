@@ -3,6 +3,9 @@ package com.cst2335.foodnutritionproject.Favorite;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,5 +99,48 @@ public class FavoriteViewDetail extends Fragment {
         binding.mainLogo.setImageBitmap(CustomViewUtility.getRoundedBitmap(logoBitmap,30));
         Animation circleRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.circle_rotation);
         binding.mainLogoBackground.startAnimation(circleRotation);
+    }
+    /**
+     * This override method called when the fragment's view is created to fill up the content
+     * of the fragments. It call
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            loadDetails(bundle);
+        }
+}
+    /**
+     * This method loads the information from bundle into the views of Favorite View Detail. It is
+     * can be called directly from the activity to set the value of Food, info, Database ID, and
+     * unfavorite.
+     * @param bundle the passed-in values from other fragments
+     */
+    public void loadDetails(Bundle bundle){
+        double calories = bundle.getDouble("CALORIES");
+        double protein = bundle.getDouble("PROTEIN");
+        double cabohydrate = bundle.getDouble("cabohydrate");
+        double fat = bundle.getDouble("FAT");
+        double fiber = bundle.getDouble("FIBER");
+
+        int id = bundle.getInt("ID");
+
+        binding.caloriesText.setText(Double.toString(calories));
+        binding.proteintext.setText(Double.toString(protein));
+        binding.carbonhydrateText.setText(Double.toString(cabohydrate));
+        binding.fatText.setText(Double.toString(fat));
+        binding.fiberText.setText(Double.toString(fiber));
+
+        binding.idContent.setText(String.valueOf("ID:  " + id));
+    }
+
+    public void setViewModel(ChatRoomViewModel viewModel) {
+        this.viewModel = viewModel;
     }
 }
