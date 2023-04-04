@@ -4,7 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Shader;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
+
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * This class contains methods that are used to modify the appearance of VIew and be used in
@@ -14,6 +19,16 @@ import android.graphics.Shader;
  * @version 1.0
  */
 public class CustomViewUtility {
+    private int screenHeight;
+    private static final CustomViewUtility utility = new CustomViewUtility();
+
+    private CustomViewUtility(){
+        screenHeight = 0;
+    }
+
+    public static CustomViewUtility getViewUtilityClass(){
+        return utility;
+    }
 
     /**
      * This method is used to crop a Bitmap into a rounded circle shape in the Activity.
@@ -30,7 +45,7 @@ public class CustomViewUtility {
      * @param offset the value to reduce the radius of the circle.
      * @return the cropped bitmap version
      */
-    public static Bitmap getRoundedBitmap(Bitmap bitmap, float offset){
+    public Bitmap getRoundedBitmap(Bitmap bitmap, float offset){
         Bitmap result = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
         Paint paint = new Paint();
@@ -43,4 +58,20 @@ public class CustomViewUtility {
         return result;
     }
 
+    public int getDefaultDeviceHeight(FragmentActivity fragmentActivity){
+        WindowManager windowManager = fragmentActivity.getWindowManager();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int screenHeight = displayMetrics.heightPixels;
+
+        return screenHeight;
+    }
+
+    public void setScreenHeight(int screenHeight) {
+        this.screenHeight = screenHeight;
+    }
+
+    public int getScreenHeight(){
+        return screenHeight;
+    }
 }
