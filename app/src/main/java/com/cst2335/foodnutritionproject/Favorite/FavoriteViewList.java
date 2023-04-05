@@ -6,6 +6,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -30,6 +34,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 /**
+ * This class represent for recyclerView inside Favorite View List fragments and some actions inside
  * A simple {@link Fragment} subclass.
  * Use the {@link FavoriteViewList#newInstance} factory method to
  * create an instance of this fragment.
@@ -79,10 +84,12 @@ public class FavoriteViewList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -153,17 +160,15 @@ public class FavoriteViewList extends Fragment {
             favoriteViewButton = itemView.findViewById(R.id.favorite_view);
             favoriteViewButton.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
-
+                viewModel.setFood(favoriteLists.get(position));
                 mItemListener.onClickedToDetails(position);
             });
 
-            itemView.setOnTouchListener( (view, motionEvent) -> {
+            favoriteViewButton.setOnTouchListener( (view, motionEvent) -> {
                 return gestureDetector.onTouchEvent(motionEvent);
             });
-
-
-
         }
+
         /**
          * This method is called when do detele event following by user's gesture
          */
@@ -171,17 +176,17 @@ public class FavoriteViewList extends Fragment {
             @Override
             public void onLongPress(MotionEvent e) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Question");
-                builder.setMessage("Do you want to delete this Favorite Food:" + favoriteViewButton.getText());
+                builder.setTitle(getString(R.string.question));
+                builder.setMessage(getString(R.string.sentence_delete) + favoriteViewButton.getText());
                 int position = getAbsoluteAdapterPosition();
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                            // Xử lý khi người dùng chọn "Có"
-                            deleteNewMessage(favoriteLists.get(position));// delete in database
+                builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            // execute when choose yes option
+                            deleteFavoriteFood(favoriteLists.get(position));// delete in database
                             favoriteLists.remove(position);// delete in viewholder
                             myAdapter.notifyItemRemoved(favoriteLists.size());// notify item deleted to adapter
                             Snackbar.make(getView(), getString(R.string.snackbar_message), Snackbar.LENGTH_LONG).show();
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(getString(R.string.no), null)
                         .show();
             }
         });
@@ -205,7 +210,7 @@ public class FavoriteViewList extends Fragment {
              mDAO.addFood(food);
         }).start();
     }
-    private void deleteNewMessage(Food food){
+    private void deleteFavoriteFood(Food food){
         new Thread(()->{
             mDAO.removeFood(food);
 
@@ -238,4 +243,31 @@ public class FavoriteViewList extends Fragment {
     public void setViewModel(FavoriteViewModel viewModel) {
         this.viewModel = viewModel;
     }
- }
+    /**
+     * Create toolbar menu for fragment
+     */
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(binding.favoriteToolbar);
+    }
+    /**
+     * Create menu inside toolbar
+     */
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.favorite_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    /**
+     *  notify position for list view to update new list view and database
+     * @param position position for unfavorite button
+     */
+    public void notifyAdapter(int position){
+        if (favoriteLists.size()!= 0)
+            favoriteLists.remove(position);
+        myAdapter.notifyDataSetChanged();
+    }
+}
