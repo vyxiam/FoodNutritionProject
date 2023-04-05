@@ -8,11 +8,16 @@
     <string name="main_button_guide">Guide</string>
     <string name="main_button_credit">Credit</string>
     <string name="main_footer">Food Nutrition Project</string>
+    <string name="search_toolbar_title">Search Function</string>
     <string name="search_input">type a food...</string>
     <string name="search_input_advanced">type a food... hint:</string>
     <string name="search_snackbar">You just search for</string>
     <string name="search_title">Search Result</string>
     <string name="search_not_found">can not be found!!!</string>
+    <string name="search_filter_button">GO</string>
+    <string name="search_menu_author">Van Vy Nguyen</string>
+    <string name="search_menu_version">1.0.0</string>
+    <string name="search_menu_history">Check history</string>
     <string name="details_title">FOOD</string>
     <string name="details_description_title">Description</string>
     <string name="details_description_content">Not available</string>
