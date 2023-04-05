@@ -49,5 +49,6 @@
     <string name="favoriteToolbar">FAVORITE</string>
     <string name="favor_author">Nhuan Pham</string>
     <string name="favor_version">1.0</string>
+    <string name="alert_shared_ref">Your favorite food recently deleted :  </string>
 
 </resources>
