@@ -17,7 +17,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.cst2335.foodnutritionproject.Data.Food;
 import com.cst2335.foodnutritionproject.Data.FoodDAO;
@@ -26,18 +25,15 @@ import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewBinding;
-import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBinding;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FavoriteView#newInstance} factory method to
+ * Use the {@link FavoriteViewList#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoriteView extends Fragment {
+public class FavoriteViewList extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +53,7 @@ public class FavoriteView extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FavoriteView() {
+    public FavoriteViewList() {
         // Required empty public constructor
     }
 
@@ -70,8 +66,8 @@ public class FavoriteView extends Fragment {
      * @return A new instance of fragment Favorite.
      */
     // TODO: Rename and change types and number of parameters
-    public static FavoriteView newInstance(String param1, String param2) {
-        FavoriteView fragment = new FavoriteView();
+    public static FavoriteViewList newInstance(String param1, String param2) {
+        FavoriteViewList fragment = new FavoriteViewList();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

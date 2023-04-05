@@ -15,13 +15,13 @@ import com.cst2335.foodnutritionproject.databinding.ActivityFavoriteOptionBindin
 public class FavoriteOption extends AppCompatActivity implements FoodDetails {
     ActivityFavoriteOptionBinding binding;
 
-    private FavoriteView fv;
+    private FavoriteViewList fv;
     private FavoriteViewDetail fvd;
     private FragmentManager fm;
     private FrameLayout fl2;
 
     /**
-     * Create cycleview, seperate which is table or phone
+     * Create cycleView, separate which is table or phone
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class FavoriteOption extends AppCompatActivity implements FoodDetails {
         FavoriteViewModel favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
 
         // Create the fragments
-        fv = new FavoriteView();
+        fv = new FavoriteViewList();
         fvd = new FavoriteViewDetail();
 
         fv.setViewModel(favoriteViewModel);
