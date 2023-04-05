@@ -1,5 +1,6 @@
 package com.cst2335.foodnutritionproject.SearchFragements;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
@@ -17,8 +18,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -67,6 +71,7 @@ public class SearchFragment extends Fragment {
     private List<Food> foodList = new ArrayList<>();
     private FoodDetails foodDetails;
     private SharedPreferences sharedPreferences;
+    private LinkedList<String> searchesHistory;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -114,6 +119,19 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.searchMenuHistory:{
+                showHistory();
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try{
@@ -156,17 +174,32 @@ public class SearchFragment extends Fragment {
         setRecyclerAdapter(); //set Recycler Adapter for fragmentSearchBinding
         fragmentSearchBinding.searchRecyclerView.setAdapter(recyclerAdapter);
 
-        fragmentSearchBinding.searchFilter.setOnClickListener(recyclerView -> {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            String searchKeyword = fragmentSearchBinding.searchInput.getText().toString();
-            editor.putString("searched", searchKeyword);
-            editor.apply();
-            showSnakeBar(getResources().getString(R.string.search_snackbar) + " " + searchKeyword);
-            searchFood(searchKeyword);
+        fragmentSearchBinding.searchFilter.setOnClickListener(recyclerView -> searchWithKeyword());
+        fragmentSearchBinding.searchInput.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if ((i == EditorInfo.IME_ACTION_DONE)||(i == EditorInfo.IME_ACTION_GO)||
+                    (i == EditorInfo.IME_ACTION_NEXT)||(i == EditorInfo.IME_ACTION_SEND)||(i == EditorInfo.IME_ACTION_UNSPECIFIED)){
+                searchWithKeyword();
+                return true;
+            }
+            return false;
+
         });
 
         fragmentSearchBinding.searchRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return view;
+    }
+
+    private void searchWithKeyword(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String searchKeyword = fragmentSearchBinding.searchInput.getText().toString();
+        searchesHistory.addLast(searchKeyword);
+        searchesHistory.removeFirst();
+        editor.putString("searched_1",searchesHistory.get(0));
+        editor.putString("searched_2",searchesHistory.get(1));
+        editor.putString("searched_3",searchesHistory.get(2));
+        editor.apply();
+        showSnakeBar(getResources().getString(R.string.search_snackbar) + " " + searchKeyword);
+        searchFood(searchKeyword);
     }
 
     /**
@@ -175,6 +208,10 @@ public class SearchFragment extends Fragment {
      */
     private void initialize(){
         sharedPreferences = getActivity().getSharedPreferences("history_search", Context.MODE_PRIVATE);
+        searchesHistory = new LinkedList<>();
+        searchesHistory.add(sharedPreferences.getString("searched_1",""));
+        searchesHistory.add(sharedPreferences.getString("searched_2",""));
+        searchesHistory.add(sharedPreferences.getString("searched_3",""));
 
         int screenHeight = CustomViewUtility.getViewUtilityClass().getScreenHeight();
         int searchInputLayoutHeight = (int)(screenHeight * 0.05);
@@ -184,16 +221,22 @@ public class SearchFragment extends Fragment {
         fragmentSearchBinding.searchInputLayout.getLayoutParams().height = searchInputLayoutHeight;
         fragmentSearchBinding.searchTitle.getLayoutParams().height = searchTitleHeight;
         fragmentSearchBinding.searchRecyclerView.getLayoutParams().height = searchRecyclerViewHeight;
-        fragmentSearchBinding.searchInput.setHint(setHistorySearch());
+        showHistory();
     }
 
-    private String setHistorySearch(){
-        String value = sharedPreferences.getString("searched","");
-        if (value.equals(""))
-            return getResources().getString(R.string.search_input);
-        else
-            return getResources().getString(R.string.search_input_advanced) + " " + value;
 
+    private void showHistory(){
+        String title = getString(R.string.search_history_title);
+        String content = getString(R.string.search_history_content);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle(title)
+                .setMessage(content + "\n- " + searchesHistory.get(0)
+                                    + "\n- " + searchesHistory.get(1)
+                                    + "\n- " + searchesHistory.get(2))
+                .setPositiveButton(getString(R.string.details_favorite_instruction_continue),null).
+                create()
+                .show();
     }
 
     private void showSnakeBar(String message){
@@ -302,7 +345,8 @@ public class SearchFragment extends Fragment {
                         Toast.makeText(getActivity().getApplicationContext(), keyword + " " + getResources().getString(R.string.search_not_found), Toast.LENGTH_SHORT).show();
                     recyclerAdapter.notifyDataSetChanged();
                     new Handler().postDelayed(() -> {
-                        fragmentSearchBinding.searchRecyclerView.smoothScrollToPosition(foodList.size()-1);
+                        if (foodList.size() != 0)
+                            fragmentSearchBinding.searchRecyclerView.smoothScrollToPosition(foodList.size()-1);
                     }, 200);
                 },
                 Throwable::printStackTrace); //TODO: turn into SnakeBar for no connection or sth
