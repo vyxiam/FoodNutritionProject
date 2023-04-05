@@ -7,12 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.cst2335.foodnutritionproject.Data.Food;
 import com.cst2335.foodnutritionproject.R;
@@ -43,6 +46,7 @@ public class FavoriteViewDetail extends Fragment {
     FragmentFavoriteViewDetailBinding binding;
     private FavoriteViewModel viewModel;
     ArrayList<Food> favoriteLists;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -82,8 +86,14 @@ public class FavoriteViewDetail extends Fragment {
         View view=binding.getRoot();
 
         initialization();
+        binding.unfavorite.setOnClickListener(v->{
+            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
+
+        });
+
 
         return view;
+
 
     }
     /**

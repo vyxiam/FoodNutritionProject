@@ -25,6 +25,7 @@ import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -177,6 +178,7 @@ public class FavoriteViewList extends Fragment {
                             deleteNewMessage(favoriteLists.get(position));// delete in database
                             favoriteLists.remove(position);// delete in viewholder
                             myAdapter.notifyItemRemoved(favoriteLists.size());// notify item deleted to adapter
+                            Snackbar.make(getView(), getString(R.string.snackbar_message), Snackbar.LENGTH_LONG).show();
                         })
                         .setNegativeButton("No", null)
                         .show();
