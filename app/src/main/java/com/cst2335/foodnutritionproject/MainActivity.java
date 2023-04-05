@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.mainSearchButton.setOnClickListener(view -> toSearchActivity()); //search button
         // favorite button
         mainBinding.mainFavoriteButton.setOnClickListener(view -> toSearchFavoriteOption());
+        // credit button
+        mainBinding.mainCreditButton.setOnClickListener(view -> toCredit());
 
     }
 
@@ -76,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
     }
     private void toSearchFavoriteOption(){
         Intent intent = new Intent(MainActivity.this, FavoriteOptionActivity.class);
+        startActivity(intent);
+    }
+
+    private void toCredit(){
+        Intent intent = new Intent(MainActivity.this, CreditActivity.class);
         startActivity(intent);
     }
 

@@ -41,5 +41,10 @@
     <string name="na">N/A</string>
     <string name="toast_message">Your favorite food is deleted</string>
     <string name="snackbar_message">Your favorite food is deleted</string>
-
+    <string name="credit_button">Next</string>
+    <string name="credit_instruction">Instruction</string>
+    <string name="credit_instruction_message">In this activity, you will learn about the authors of this project</string>
+    <string name="credit_instruction_dismiss">Dismiss</string>
+    <string name="credit_next_toast">This is the next author</string>
+    <string name="credit_last_author">You reached the last author</string>
 </resources>
