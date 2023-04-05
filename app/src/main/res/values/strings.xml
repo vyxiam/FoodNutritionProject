@@ -8,11 +8,18 @@
     <string name="main_button_guide">Guide</string>
     <string name="main_button_credit">Credit</string>
     <string name="main_footer">Food Nutrition Project</string>
+    <string name="search_toolbar_title">Search Function</string>
     <string name="search_input">type a food...</string>
     <string name="search_input_advanced">type a food... hint:</string>
     <string name="search_snackbar">You just search for</string>
     <string name="search_title">Search Result</string>
     <string name="search_not_found">can not be found!!!</string>
+    <string name="search_filter_button">GO</string>
+    <string name="search_menu_author">Van Vy Nguyen</string>
+    <string name="search_menu_version">1.0.0</string>
+    <string name="search_menu_history">Check history</string>
+    <string name="search_history_title">History</string>
+    <string name="search_history_content">Your last 3 history searches:</string>
     <string name="details_title">FOOD</string>
     <string name="details_description_title">Description</string>
     <string name="details_description_content">Not available</string>
@@ -31,7 +38,7 @@
     <string name="details_favorite_instruction_continue">Continue</string>
     // String for favorite
     <string name="unfavorite">UNFAVORITE</string>
-    <string name="favoriteFoodTitle">FAVORITE</string>
+    <string name="favoriteFoodTitle">FOOD</string>
     <string name="caloriesTitle">CALORIES</string>
     <string name="proteinTitle">PROTEIN</string>
     <string name="carbohydrateTitle">CARBOHYDRATE</string>
@@ -40,15 +47,11 @@
     <string name="descriptionTitle">Description</string>
     <string name="na">N/A</string>
     <string name="toast_message">Your favorite food is deleted</string>
-    <string name="toast_message_na">What are you doing?</string>
     <string name="snackbar_message">Your favorite food is deleted</string>
-    <string name="question">Question</string>
-    <string name="sentence_delete">Do you want to delete this Favorite Food: </string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="favoriteToolbar">FAVORITE</string>
-    <string name="favor_author">Nhuan Pham</string>
-    <string name="favor_version">1.0</string>
-    <string name="alert_shared_ref">Your favorite food recently deleted :  </string>
-
+    <string name="credit_button">Next</string>
+    <string name="credit_instruction">Instruction</string>
+    <string name="credit_instruction_message">In this activity, you will learn about the authors of this project</string>
+    <string name="credit_instruction_dismiss">Dismiss</string>
+    <string name="credit_next_toast">This is the next author</string>
+    <string name="credit_last_author">You reached the last author</string>
 </resources>
