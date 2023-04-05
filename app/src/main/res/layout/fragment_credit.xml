@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Credit.CreditFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/creditToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Credit" />
+
     <ImageView
         android:id="@+id/creditLogo"
         android:layout_width="150dp"
