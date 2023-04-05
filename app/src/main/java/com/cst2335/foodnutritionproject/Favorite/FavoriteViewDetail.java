@@ -152,11 +152,11 @@ public class FavoriteViewDetail extends Fragment {
 
 
 
-        binding.caloriesText.setText(Double.toString(calories));
-        binding.proteintext.setText(Double.toString(protein));
-        binding.carbonhydrateText.setText(Double.toString(carbohydrate));
-        binding.fatText.setText(Double.toString(fat));
-        binding.fiberText.setText(Double.toString(fiber));
+        binding.caloriesText.setText(String.format("%.2f",calories));
+        binding.proteintext.setText(String.format("%.2f",protein));
+        binding.carbonhydrateText.setText(String.format("%.2f",carbohydrate));
+        binding.fatText.setText(String.format("%.2f",fat));
+        binding.fiberText.setText(String.format("%.2f",fiber));
         binding.descriptionText.setText("Description"+description);
         binding.foodLable.setText(foodlabel);
     }

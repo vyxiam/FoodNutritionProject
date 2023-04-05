@@ -150,7 +150,8 @@ public class FavoriteViewList extends Fragment {
         @SuppressLint("ClickableViewAccessibility")
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(view -> {
+            favoriteViewButton = itemView.findViewById(R.id.favorite_view);
+            favoriteViewButton.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
 
                 mItemListener.onClickedToDetails(position);
@@ -159,7 +160,7 @@ public class FavoriteViewList extends Fragment {
             itemView.setOnTouchListener( (view, motionEvent) -> {
                 return gestureDetector.onTouchEvent(motionEvent);
             });
-            favoriteViewButton = itemView.findViewById(R.id.favorite_view);
+
 
 
         }
