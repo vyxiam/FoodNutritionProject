@@ -15,6 +15,7 @@
         android:layout_marginStart="268dp"
         android:layout_marginTop="12dp"
         android:text="@string/unfavorite"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,6 +87,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/caloriesTitle"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -98,6 +100,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/proteinTitle"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -110,6 +113,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/carbohydrateTitle"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -122,6 +126,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/fatTitle"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -134,6 +139,7 @@
         android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/fiberTitle"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -145,6 +151,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/na"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -156,6 +163,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/na"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/caloriesText" />
 
@@ -167,6 +175,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/na"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/proteintext" />
 
@@ -178,6 +187,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/na"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/carbonhydrateText" />
 
@@ -189,6 +199,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/na"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/fatText" />
 
@@ -200,6 +211,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="30dp"
         android:text="@string/descriptionTitle"
+        android:textSize="16sp"
         android:textColor="#FF5722"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

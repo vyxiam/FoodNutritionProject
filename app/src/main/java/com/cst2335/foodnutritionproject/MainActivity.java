@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private void initialize(){
         setUpLogo();
         CustomViewUtility.getViewUtilityClass().setScreenHeight(getResources().getDisplayMetrics().heightPixels);
+        setSupportActionBar(mainBinding.mainToolBar);
     }
 
     /**
@@ -75,5 +77,11 @@ public class MainActivity extends AppCompatActivity {
     private void toSearchFavoriteOption(){
         Intent intent = new Intent(MainActivity.this, FavoriteOptionActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
     }
 }

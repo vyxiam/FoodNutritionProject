@@ -29,6 +29,7 @@
     <string name="details_favorite_instruction_title">Instruction</string>
     <string name="details_favorite_instruction_description">If you favorite this food, it will save the food information to the local storage. If it exists, nothing happen.</string>
     <string name="details_favorite_instruction_continue">Continue</string>
+    // String for favorite
     <string name="unfavorite">UNFAVORITE</string>
     <string name="favoriteFoodTitle">FOOD</string>
     <string name="caloriesTitle">CALORIES</string>
@@ -38,4 +39,7 @@
     <string name="fiberTitle">FIBER</string>
     <string name="descriptionTitle">Description</string>
     <string name="na">N/A</string>
+    <string name="toast_message">Your favorite food is deleted</string>
+    <string name="snackbar_message">Your favorite food is deleted</string>
+
 </resources>

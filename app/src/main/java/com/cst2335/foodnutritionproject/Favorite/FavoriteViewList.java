@@ -25,6 +25,7 @@ import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -149,7 +150,8 @@ public class FavoriteViewList extends Fragment {
         @SuppressLint("ClickableViewAccessibility")
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setOnClickListener(view -> {
+            favoriteViewButton = itemView.findViewById(R.id.favorite_view);
+            favoriteViewButton.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
 
                 mItemListener.onClickedToDetails(position);
@@ -158,7 +160,7 @@ public class FavoriteViewList extends Fragment {
             itemView.setOnTouchListener( (view, motionEvent) -> {
                 return gestureDetector.onTouchEvent(motionEvent);
             });
-            favoriteViewButton = itemView.findViewById(R.id.favorite_view);
+
 
 
         }
@@ -177,6 +179,7 @@ public class FavoriteViewList extends Fragment {
                             deleteNewMessage(favoriteLists.get(position));// delete in database
                             favoriteLists.remove(position);// delete in viewholder
                             myAdapter.notifyItemRemoved(favoriteLists.size());// notify item deleted to adapter
+                            Snackbar.make(getView(), getString(R.string.snackbar_message), Snackbar.LENGTH_LONG).show();
                         })
                         .setNegativeButton("No", null)
                         .show();
