@@ -36,6 +36,7 @@ public class FavoriteViewDetail extends Fragment {
     private String mParam1;
     private String mParam2;
     FragmentFavoriteViewDetailBinding binding;
+    private FavoriteViewModel viewModel;
 
     /**
      * Use this factory method to create a new instance of
@@ -140,5 +141,7 @@ public class FavoriteViewDetail extends Fragment {
         binding.descriptionText.setText(description);
     }
 
-
+    public void setViewModel(FavoriteViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
 }

@@ -25,8 +25,12 @@ import com.cst2335.foodnutritionproject.Data.FoodDatabase;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
+import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewBinding;
+import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,19 +99,31 @@ public class FavoriteView extends Fragment {
         loadAllFoods();
         if(favoriteLists == null)
             favoriteLists = new ArrayList<>();
+        //Define the adapter for the RecyclerView
         binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
+            @NonNull
             @Override
-            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
-                FavoriteList obj = favoriteLists.get(position);
-                holder.favoriteView.setText(obj.getFavorites());
+            public MyRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+                    FragmentFavoriteViewBinding fragmentFavoriteViewBinding = FragmentFavoriteViewBinding.inflate(getLayoutInflater(),parent,false);
+                    return new MyRowHolder(fragmentFavoriteViewBinding.getRoot());
 
             }
+            @Override
+            public void onBindViewHolder(@NonNull MyRowHolder holder, int position) {
+                Food obj = favoriteLists.get(position);
+                holder.favoriteViewButton.setText(obj.getLabel());
+                }
+
             @Override
             public int getItemCount() {
                 return favoriteLists.size();
             }
 
                 });
+
+
+        //set the layout
         binding.recycleView.setLayoutManager(new LinearLayoutManager(requireContext()));
         return view;
     }
@@ -119,7 +135,7 @@ public class FavoriteView extends Fragment {
     @Override public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            mItemListener = (OnItemSelectedListener) context; }
+            mItemListener = (FoodDetails) context; }
         catch (ClassCastException castException) {
             Log.e("TAG", "error in onAttach(). Missing a Listener in the Activity");
         }
@@ -140,7 +156,7 @@ public class FavoriteView extends Fragment {
             itemView.setOnClickListener(view -> {
                 int position = getAbsoluteAdapterPosition();
 
-                mItemListener.onItemSelected(position);
+                mItemListener.onClickedToDetails(position);
             });
 
             itemView.setOnTouchListener( (view, motionEvent) -> {
@@ -183,16 +199,16 @@ public class FavoriteView extends Fragment {
     /**
      * This message will insert a new favorite food into the database using DAO interface using a separate
      * thread.
-     * @param favoriteFood the inserted message
+     * @param food the inserted message
      */
-    private void insertNewFood(ChatMessage chatMessage){
+    private void insertNewFood(Food food){
         new Thread(() -> {
-            chatMessage.id = mDAO.insertMessage(chatMessage);
+             mDAO.addFood(food);
         }).start();
     }
-    private void deleteNewMessage(ChatMessage chatMessage){
+    private void deleteNewMessage(Food food){
         new Thread(()->{
-            mDAO.deleteMessage(chatMessage);
+            mDAO.removeFood(food);
 
         }).start();
     }
@@ -224,4 +240,3 @@ public class FavoriteView extends Fragment {
         this.viewModel = viewModel;
     }
  }
-}

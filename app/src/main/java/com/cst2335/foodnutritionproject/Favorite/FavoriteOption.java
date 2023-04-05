@@ -38,6 +38,7 @@ public class FavoriteOption extends AppCompatActivity implements FoodDetails {
         // Create the fragments
         fv = new FavoriteView();
         fvd = new FavoriteViewDetail();
+
         fv.setViewModel(favoriteViewModel);
         fvd.setViewModel(favoriteViewModel);
 
@@ -56,8 +57,7 @@ public class FavoriteOption extends AppCompatActivity implements FoodDetails {
      * Notify onclick action including a bunch of details. Renew view of fragment when ever change.
      * Transfer the fragment into corresponding layout. If phone, fragment need to be add to backtrack.
      * If not, fragment can't be updated
-     *
-     * @param position
+     * @param position position
      */
     @Override
     public void onClickedToDetails(int position) {
@@ -65,10 +65,10 @@ public class FavoriteOption extends AppCompatActivity implements FoodDetails {
         Bundle bundle = new Bundle();
         bundle.putDouble("CALORIES", clickedFavorite.getCalories());
         bundle.putDouble("PROTEIN", clickedFavorite.getProtein());
-        bundle.putDouble("CABOHYDRATE", clickedFavorite.getCarbohydrate());
+        bundle.putDouble("CARBOHYDRATE", clickedFavorite.getCarbohydrate());
         bundle.putDouble("FAT", clickedFavorite.getFat());
         bundle.putDouble("FIBER", clickedFavorite.getFiber());
-        bundle.putString("DESCIPTION", clickedFavorite.getFoodContentsLabel());
+        bundle.putString("DESCRIPTION", clickedFavorite.getFoodContentsLabel());
 
 
         if (fl2 != null) {

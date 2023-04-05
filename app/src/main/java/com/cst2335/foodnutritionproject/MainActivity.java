@@ -9,8 +9,12 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.cst2335.foodnutritionproject.Favorite.FavoriteOption;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.ActivityMainBinding;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This Activity is the main activity of the project which is the entrance of the Food Nutrition app.
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         initialize(); //initialize the Views in the layout
 
         mainBinding.mainSearchButton.setOnClickListener(view -> toSearchActivity()); //search button
+        // favorite button
+        mainBinding.mainFavoriteButton.setOnClickListener(view -> toSearchFavoriteOption());
+
     }
 
     /**
@@ -67,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void toSearchActivity(){
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
+    }
+    private void toSearchFavoriteOption(){
+        Intent intent = new Intent(MainActivity.this, FavoriteOption.class);
         startActivity(intent);
     }
 }
