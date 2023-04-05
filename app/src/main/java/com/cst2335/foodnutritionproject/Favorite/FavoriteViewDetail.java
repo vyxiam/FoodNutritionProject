@@ -157,7 +157,7 @@ public class FavoriteViewDetail extends Fragment {
         binding.carbonhydrateText.setText(String.format("%.2f",carbohydrate));
         binding.fatText.setText(String.format("%.2f",fat));
         binding.fiberText.setText(String.format("%.2f",fiber));
-        binding.descriptionText.setText("Description"+description);
+        binding.descriptionText.setText("Description:  "+description);
         binding.foodLable.setText(foodlabel);
     }
 
