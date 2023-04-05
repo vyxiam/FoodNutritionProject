@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="252dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:text="@string/unfavorite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="235dp"
+        android:layout_height="245dp"
         android:src="@drawable/favorite_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,8 +36,8 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:src="@android:drawable/btn_star_big_on"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="25dp"
         android:text="@string/favoriteFoodTitle"
         android:textColor="#2196F3"
         android:textSize="32sp"
@@ -61,10 +61,10 @@
         android:contentDescription='"Main logo"'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintVertical_bias="0.128" />
 
     <ImageView
         android:id="@+id/mainLogoBackground"
@@ -73,10 +73,10 @@
         android:contentDescription='"Logo background"'
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11"
+        app:layout_constraintVertical_bias="0.128"
         app:srcCompat="@drawable/circle_rotation_background" />
 
     <TextView
@@ -214,12 +214,13 @@
         android:layout_width="358dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:text="@string/descriptionTitle"
         android:textColor="#FFEB3B"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

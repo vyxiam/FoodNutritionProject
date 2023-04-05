@@ -31,7 +31,7 @@
     <string name="details_favorite_instruction_continue">Continue</string>
     // String for favorite
     <string name="unfavorite">UNFAVORITE</string>
-    <string name="favoriteFoodTitle">FOOD</string>
+    <string name="favoriteFoodTitle">FAVORITE</string>
     <string name="caloriesTitle">CALORIES</string>
     <string name="proteinTitle">PROTEIN</string>
     <string name="carbohydrateTitle">CARBOHYDRATE</string>
