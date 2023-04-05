@@ -10,10 +10,11 @@
 
     <Button
         android:id="@+id/unfavorite"
+        style="@style/custom_home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="268dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="5dp"
         android:text="@string/unfavorite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,65 +81,70 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/custom_home_button"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/caloriesTitle"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/custom_home_button"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/proteinTitle"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView4"
+        style="@style/custom_home_button"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/carbohydrateTitle"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/custom_home_button"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/fatTitle"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView6"
+        style="@style/custom_home_button"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:text="@string/fiberTitle"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
