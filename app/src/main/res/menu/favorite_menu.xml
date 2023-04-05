@@ -3,4 +3,7 @@
 
     <item android:title="@string/favor_author" />
     <item android:title="@string/favor_version" />
+    <item
+        android:id="@+id/historyDelete"
+        android:title="@string/recently_delete" />
 </menu>

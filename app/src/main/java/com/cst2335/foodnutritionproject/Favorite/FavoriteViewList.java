@@ -3,6 +3,7 @@ package com.cst2335.foodnutritionproject.Favorite;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -52,6 +54,7 @@ public class FavoriteViewList extends Fragment {
     private FoodDAO mDAO;
     private FavoriteViewModel viewModel;
     private FoodDetails mItemListener;
+    private SharedPreferences sharedPreferences;
 
 
 
@@ -97,6 +100,7 @@ public class FavoriteViewList extends Fragment {
                              Bundle savedInstanceState) {
     binding =FragmentFavoriteBinding.inflate(getLayoutInflater(),container,false);
     View view=binding.getRoot();
+        sharedPreferences = getActivity().getSharedPreferences("delete_history", Context.MODE_PRIVATE);
     // interact with database
         db = FoodDatabase.getInstance(requireContext());
         mDAO = db.foodDAO();
@@ -269,5 +273,23 @@ public class FavoriteViewList extends Fragment {
         if (favoriteLists.size()!= 0)
             favoriteLists.remove(position);
         myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.historyDelete:{
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle(getString(R.string.recently_delete_title))
+                        .setMessage(sharedPreferences.getString("history",getString(R.string.recently_delete_na)))
+                        .setPositiveButton(getString(R.string.recently_delete_button),null).
+                        create()
+                        .show();
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

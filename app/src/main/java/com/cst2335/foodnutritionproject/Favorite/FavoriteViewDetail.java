@@ -1,6 +1,7 @@
 package com.cst2335.foodnutritionproject.Favorite;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class FavoriteViewDetail extends Fragment {
     private FavoriteViewModel viewModel;
     private FoodDAO fDAO;
     private int clickPosition;
+    private SharedPreferences sharedPreferences;
 
 
 
@@ -87,17 +89,19 @@ public class FavoriteViewDetail extends Fragment {
         View view=binding.getRoot();
         FoodDatabase db = FoodDatabase.getInstance(requireContext());
         fDAO = db.foodDAO();
-
+        sharedPreferences = getActivity().getSharedPreferences("delete_history", Context.MODE_PRIVATE);
         initialization();
         binding.unfavorite.setOnClickListener(v->{
             if (viewModel.getFood().getValue() != null){
                 deleteFavoriteFood(viewModel.getFood().getValue());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("history",viewModel.getFood().getValue().getLabel());
+                editor.apply();
                 Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
                 if (clickPosition != -1){
                     viewModel.getAdapter().getValue().notifyAdapter(clickPosition);
                     clickPosition = -1;
                 }
-
             }
             else
                 Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message_na), Toast.LENGTH_SHORT).show();
