@@ -72,20 +72,6 @@
         app:layout_constraintTop_toBottomOf="@+id/mainSearchButton" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/mainGuideButton"
-        style="@style/custom_home_button"
-        android:layout_width="200dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/main_button_guide"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainFavoriteButton" />
-
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mainCreditButton"
         style="@style/custom_home_button"
         android:layout_width="200dp"
@@ -97,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainGuideButton" />
+        app:layout_constraintTop_toBottomOf="@+id/mainFavoriteButton" />
 
     <TextView
         android:id="@+id/main_footer"
