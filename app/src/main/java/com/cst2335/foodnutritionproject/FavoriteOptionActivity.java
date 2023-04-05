@@ -49,7 +49,7 @@ public class FavoriteOptionActivity extends AppCompatActivity implements FoodDet
         // Create the fragments
         fv = new FavoriteViewList();
         fvd = new FavoriteViewDetail();
-
+        favoriteViewModel.setAdapter(fv);
         fv.setViewModel(favoriteViewModel);
         fvd.setViewModel(favoriteViewModel);
 
@@ -81,6 +81,7 @@ public class FavoriteOptionActivity extends AppCompatActivity implements FoodDet
         bundle.putDouble("FIBER", clickedFavorite.getFiber());
         bundle.putString("DESCRIPTION", clickedFavorite.getFoodContentsLabel());
         bundle.putString("LABEL",clickedFavorite.getLabel());
+        bundle.putInt("POSITION",position);
 
 
         if (fl2 != null) {
@@ -89,7 +90,7 @@ public class FavoriteOptionActivity extends AppCompatActivity implements FoodDet
         }
         if (fl2 == null) {
             fvd.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.frameLayout1, fvd).addToBackStack("fv").commit();
+            fm.beginTransaction().replace(R.id.frameLayout1, fv).addToBackStack("fv").commit();
 
         }
     }

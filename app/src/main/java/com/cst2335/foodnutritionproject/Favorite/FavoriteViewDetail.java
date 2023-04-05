@@ -1,5 +1,6 @@
 package com.cst2335.foodnutritionproject.Favorite;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,23 +8,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.cst2335.foodnutritionproject.Data.Food;
 import com.cst2335.foodnutritionproject.Data.FoodDAO;
+import com.cst2335.foodnutritionproject.Data.FoodDatabase;
 import com.cst2335.foodnutritionproject.R;
+import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBinding;
-
-import java.util.ArrayList;
 
 
 /**
@@ -44,7 +44,8 @@ public class FavoriteViewDetail extends Fragment {
     private String mParam2;
     FragmentFavoriteViewDetailBinding binding;
     private FavoriteViewModel viewModel;
-    private FoodDAO mDAO;
+    private FoodDAO fDAO;
+    private int clickPosition;
 
 
 
@@ -82,11 +83,22 @@ public class FavoriteViewDetail extends Fragment {
                              Bundle savedInstanceState) {
         binding =FragmentFavoriteViewDetailBinding.inflate(getLayoutInflater(),container,false);
         View view=binding.getRoot();
+        FoodDatabase db = FoodDatabase.getInstance(requireContext());
+        fDAO = db.foodDAO();
 
         initialization();
         binding.unfavorite.setOnClickListener(v->{
+            if (viewModel.getFood().getValue() != null){
+                deleteFavoriteFood(viewModel.getFood().getValue());
+                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
+                if (clickPosition != -1){
+                    viewModel.getAdapter().getValue().notifyAdapter(clickPosition);
+                    clickPosition = -1;
+                }
 
-            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message_na), Toast.LENGTH_SHORT).show();
 
         });
 
@@ -95,6 +107,7 @@ public class FavoriteViewDetail extends Fragment {
 
 
     }
+
     /**
      * This private method is used to initialize the main activity by setting up the logo, buttons
      * with customized attributes
@@ -149,7 +162,7 @@ public class FavoriteViewDetail extends Fragment {
         double fiber = bundle.getDouble("FIBER");
         String description =bundle.getString("DESCRIPTION");
         String foodlabel =bundle.getString("LABEL");
-
+        clickPosition = bundle.getInt("POSITION");
 
 
         binding.caloriesText.setText(String.format("%.2f",calories));
@@ -164,5 +177,11 @@ public class FavoriteViewDetail extends Fragment {
 
     public void setViewModel(FavoriteViewModel viewModel) {
         this.viewModel = viewModel;
+    }
+    private void deleteFavoriteFood(Food food){
+        new Thread(()->{
+            fDAO.removeFood(food);
+
+        }).start();
     }
 }

@@ -13,8 +13,8 @@
         style="@style/custom_home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="268dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="12dp"
         android:text="@string/unfavorite"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -211,8 +211,8 @@
 
     <TextView
         android:id="@+id/descriptionText"
-        android:layout_width="361dp"
-        android:layout_height="86dp"
+        android:layout_width="358dp"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="30dp"
