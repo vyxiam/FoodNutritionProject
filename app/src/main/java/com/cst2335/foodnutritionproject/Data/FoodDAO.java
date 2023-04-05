@@ -23,4 +23,5 @@ public interface FoodDAO {
 
     @Query("SELECT * FROM Food WHERE foodID = :id")
     Food getFoodByID(int id);
+
 }
