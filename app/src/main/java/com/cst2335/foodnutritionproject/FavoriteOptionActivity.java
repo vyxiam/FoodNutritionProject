@@ -12,7 +12,16 @@ import com.cst2335.foodnutritionproject.Favorite.FavoriteViewDetail;
 import com.cst2335.foodnutritionproject.Favorite.FavoriteViewList;
 import com.cst2335.foodnutritionproject.Favorite.FavoriteViewModel;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
+import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.ActivityFavoriteOptionBinding;
+/**
+ * This Activity is secondary activity of the project which is the entrance of the FAVORITE food.
+ * This inflates the activity favorite option layout using ViewBinding and uses the activity_favorite_option layout.
+ *
+ * @author Van Vy Nguyen
+ * @see CustomViewUtility
+ * @version 1.0
+ */
 
 public class FavoriteOptionActivity extends AppCompatActivity implements FoodDetails {
     ActivityFavoriteOptionBinding binding;

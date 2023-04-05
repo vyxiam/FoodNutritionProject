@@ -18,14 +18,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.cst2335.foodnutritionproject.Data.Food;
+import com.cst2335.foodnutritionproject.Data.FoodDAO;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBinding;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +44,8 @@ public class FavoriteViewDetail extends Fragment {
     private String mParam2;
     FragmentFavoriteViewDetailBinding binding;
     private FavoriteViewModel viewModel;
-    ArrayList<Food> favoriteLists;
+    private FoodDAO mDAO;
+
 
 
     /**
@@ -66,9 +66,6 @@ public class FavoriteViewDetail extends Fragment {
         return fragment;
     }
 
-    public FavoriteViewDetail() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,6 +76,7 @@ public class FavoriteViewDetail extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,6 +85,7 @@ public class FavoriteViewDetail extends Fragment {
 
         initialization();
         binding.unfavorite.setOnClickListener(v->{
+
             Toast.makeText(getActivity().getApplicationContext(), getString(R.string.toast_message), Toast.LENGTH_SHORT).show();
 
         });
@@ -102,6 +101,7 @@ public class FavoriteViewDetail extends Fragment {
      */
     private void initialization(){
         setUpLogo();
+
     }
 
     /**

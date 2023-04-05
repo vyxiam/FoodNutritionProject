@@ -41,5 +41,10 @@
     <string name="na">N/A</string>
     <string name="toast_message">Your favorite food is deleted</string>
     <string name="snackbar_message">Your favorite food is deleted</string>
+    <string name="question">Question</string>
+    <string name="sentence_delete">Do you want to delete this Favorite Food: </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="favoriteToolbar">FAVORITE</string>
 
 </resources>

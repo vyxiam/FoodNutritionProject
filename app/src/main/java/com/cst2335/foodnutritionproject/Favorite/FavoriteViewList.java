@@ -157,13 +157,11 @@ public class FavoriteViewList extends Fragment {
                 mItemListener.onClickedToDetails(position);
             });
 
-            itemView.setOnTouchListener( (view, motionEvent) -> {
+            favoriteViewButton.setOnTouchListener( (view, motionEvent) -> {
                 return gestureDetector.onTouchEvent(motionEvent);
             });
-
-
-
         }
+
         /**
          * This method is called when do detele event following by user's gesture
          */
@@ -171,17 +169,17 @@ public class FavoriteViewList extends Fragment {
             @Override
             public void onLongPress(MotionEvent e) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Question");
-                builder.setMessage("Do you want to delete this Favorite Food:" + favoriteViewButton.getText());
+                builder.setTitle(getString(R.string.question));
+                builder.setMessage(getString(R.string.sentence_delete) + favoriteViewButton.getText());
                 int position = getAbsoluteAdapterPosition();
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                            // Xử lý khi người dùng chọn "Có"
-                            deleteNewMessage(favoriteLists.get(position));// delete in database
+                builder.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                            // execute when choose yes option
+                            deleteFavoriteFood(favoriteLists.get(position));// delete in database
                             favoriteLists.remove(position);// delete in viewholder
                             myAdapter.notifyItemRemoved(favoriteLists.size());// notify item deleted to adapter
                             Snackbar.make(getView(), getString(R.string.snackbar_message), Snackbar.LENGTH_LONG).show();
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton(getString(R.string.no), null)
                         .show();
             }
         });
@@ -205,7 +203,7 @@ public class FavoriteViewList extends Fragment {
              mDAO.addFood(food);
         }).start();
     }
-    private void deleteNewMessage(Food food){
+    private void deleteFavoriteFood(Food food){
         new Thread(()->{
             mDAO.removeFood(food);
 
