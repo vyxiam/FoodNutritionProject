@@ -90,7 +90,7 @@ public class FavoriteOptionActivity extends AppCompatActivity implements FoodDet
         }
         if (fl2 == null) {
             fvd.setArguments(bundle);
-            fm.beginTransaction().replace(R.id.frameLayout1, fv).addToBackStack("fv").commit();
+            fm.beginTransaction().replace(R.id.frameLayout1, fvd).addToBackStack("fv").commit();
 
         }
     }

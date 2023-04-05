@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
     android:background="#009688"
     tools:context=".Favorite.FavoriteViewDetail">
 
@@ -13,21 +12,21 @@
         style="@style/custom_home_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/unfavorite"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
+        android:layout_height="0dp"
         android:src="@drawable/favorite_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHeight_percent="0.30"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -49,22 +48,10 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="25dp"
         android:text="@string/favoriteFoodTitle"
-        android:textColor="#2196F3"
+        android:textColor="#FFEB3B"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/mainLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription='"Main logo"'
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.967"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
 
     <ImageView
         android:id="@+id/mainLogoBackground"
@@ -76,13 +63,25 @@
         app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128"
+        app:layout_constraintVertical_bias="0.108"
         app:srcCompat="@drawable/circle_rotation_background" />
+
+    <ImageView
+        android:id="@+id/mainLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:contentDescription='"Main logo"'
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
 
     <TextView
         android:id="@+id/textView"
         style="@style/custom_home_button"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="30dp"
@@ -91,12 +90,13 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/textView2"
         style="@style/custom_home_button"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
@@ -105,12 +105,13 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/textView4"
         style="@style/custom_home_button"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
@@ -119,12 +120,13 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/textView5"
         style="@style/custom_home_button"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
@@ -133,12 +135,13 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/textView6"
         style="@style/custom_home_button"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
@@ -147,11 +150,12 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintWidth_percent="0.35" />
 
     <TextView
         android:id="@+id/caloriesText"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="30dp"
@@ -159,11 +163,12 @@
         android:text="@string/na"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/proteintext"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
@@ -171,11 +176,12 @@
         android:text="@string/na"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/caloriesText" />
+        app:layout_constraintTop_toBottomOf="@+id/caloriesText"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/carbonhydrateText"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
@@ -183,11 +189,12 @@
         android:text="@string/na"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/proteintext" />
+        app:layout_constraintTop_toBottomOf="@+id/proteintext"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/fatText"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
@@ -195,11 +202,12 @@
         android:text="@string/na"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/carbonhydrateText" />
+        app:layout_constraintTop_toBottomOf="@+id/carbonhydrateText"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/fiberText"
-        android:layout_width="70dp"
+        android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
@@ -207,11 +215,12 @@
         android:text="@string/na"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/fatText" />
+        app:layout_constraintTop_toBottomOf="@+id/fatText"
+        app:layout_constraintWidth_percent="0.2" />
 
     <TextView
         android:id="@+id/descriptionText"
-        android:layout_width="358dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
@@ -222,6 +231,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
