@@ -1,5 +1,6 @@
 package com.cst2335.foodnutritionproject.SearchFragements;
 
+import android.app.AlertDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -19,14 +20,12 @@ import android.widget.Toast;
 import com.cst2335.foodnutritionproject.Data.Food;
 import com.cst2335.foodnutritionproject.Data.FoodDAO;
 import com.cst2335.foodnutritionproject.Data.FoodDatabase;
-import com.cst2335.foodnutritionproject.Data.Nutrient;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentSearchDetailsBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -110,10 +109,23 @@ public class SearchDetailsFragment extends Fragment {
         fragmentSearchDetailsBinding.detailsFoodLogo.setImageBitmap(CustomViewUtility.getViewUtilityClass().getRoundedBitmap(foodLogo,50));
         Animation circleRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.circle_rotation);
         fragmentSearchDetailsBinding.detailsFoodBackground.startAnimation(circleRotation);
-        fragmentSearchDetailsBinding.detailsFavoriteButton.setOnClickListener(view -> favoriteButtonBehave());
+        fragmentSearchDetailsBinding.detailsFavoriteButton.setOnClickListener(view -> showDialog());
     }
 
-    private void favoriteButtonBehave(){
+    private void showDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle(getString(R.string.details_favorite_instruction_title))
+                .setMessage(getString(R.string.details_favorite_instruction_description))
+                .setPositiveButton(getString(R.string.details_favorite_instruction_continue),
+                        (dialogInterface, i) -> {
+                            favoriteFood();
+                        }).
+                create()
+                .show();
+
+    }
+
+    private void favoriteFood(){
         boolean isExistInDatabase = checkDatabaseContent(food.getFoodID());
         if (isExistInDatabase){
             Toast.makeText(requireContext(), getResources().getString(R.string.details_food_exist), Toast.LENGTH_SHORT).show();
