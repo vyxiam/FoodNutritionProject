@@ -239,6 +239,10 @@ public class SearchFragment extends Fragment {
                 .show();
     }
 
+    /**
+     *
+     * @param message
+     */
     private void showSnakeBar(String message){
         Snackbar snackbar = Snackbar.make(fragmentSearchBinding.getRoot(),message,Snackbar.LENGTH_LONG);
         snackbar.show();
@@ -268,6 +272,9 @@ public class SearchFragment extends Fragment {
         else  fragmentSearchBinding.searchRecyclerView.getLayoutParams().height = withKeyboard;
     }
 
+    /**
+     * This private helper method is used to initialize and define the RecyclerView adapter
+     */
     private void setRecyclerAdapter(){
         recyclerAdapter = new RecyclerView.Adapter<ResultViewHolder>() {
             /**
@@ -308,6 +315,9 @@ public class SearchFragment extends Fragment {
         };
     }
 
+    /**
+     * This inner class represents the ViewHolder of the RecyclerView
+     */
     private class ResultViewHolder extends RecyclerView.ViewHolder{
         TextView resultText;
 
