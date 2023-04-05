@@ -76,16 +76,32 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * This private helper method is used to define the action of FAVORITE button in the layout
+     * Note:
+     * - This method is used for refactoring purpose to improve coupling and cohesion
+     */
     private void toSearchFavoriteOption(){
         Intent intent = new Intent(MainActivity.this, FavoriteOptionActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This private helper method is used to define the action of CREDIT button in the layout
+     * Note:
+     * - This method is used for refactoring purpose to improve coupling and cohesion
+     */
     private void toCredit(){
         Intent intent = new Intent(MainActivity.this, CreditActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This override version inflates a Menu layout to the activity
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
