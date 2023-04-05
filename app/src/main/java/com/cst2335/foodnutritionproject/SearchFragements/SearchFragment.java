@@ -1,6 +1,7 @@
 package com.cst2335.foodnutritionproject.SearchFragements;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
 import com.cst2335.foodnutritionproject.databinding.FragmentSearchBinding;
 import com.cst2335.foodnutritionproject.databinding.SearchResultViewholderBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,6 +62,7 @@ public class SearchFragment extends Fragment {
     private List<String> resultList = new ArrayList<>();
     private List<Food> foodList = new ArrayList<>();
     private FoodDetails foodDetails;
+    private SharedPreferences sharedPreferences;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -136,7 +139,11 @@ public class SearchFragment extends Fragment {
         fragmentSearchBinding.searchRecyclerView.setAdapter(recyclerAdapter);
 
         fragmentSearchBinding.searchFilter.setOnClickListener(recyclerView -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             String searchKeyword = fragmentSearchBinding.searchInput.getText().toString();
+            editor.putString("searched", searchKeyword);
+            editor.apply();
+            showSnakeBar(getResources().getString(R.string.search_snackbar) + " " + searchKeyword);
             searchFood(searchKeyword);
         });
 
@@ -149,6 +156,8 @@ public class SearchFragment extends Fragment {
      * the screen height to be compatible with different type of devices.
      */
     private void initialize(){
+        sharedPreferences = getActivity().getSharedPreferences("history_search", Context.MODE_PRIVATE);
+
         int screenHeight = CustomViewUtility.getViewUtilityClass().getScreenHeight();
         int searchInputLayoutHeight = (int)(screenHeight * 0.05);
         int searchTitleHeight = (int)(screenHeight * 0.05);
@@ -157,6 +166,21 @@ public class SearchFragment extends Fragment {
         fragmentSearchBinding.searchInputLayout.getLayoutParams().height = searchInputLayoutHeight;
         fragmentSearchBinding.searchTitle.getLayoutParams().height = searchTitleHeight;
         fragmentSearchBinding.searchRecyclerView.getLayoutParams().height = searchRecyclerViewHeight;
+        fragmentSearchBinding.searchInput.setHint(setHistorySearch());
+    }
+
+    private String setHistorySearch(){
+        String value = sharedPreferences.getString("searched","");
+        if (value.equals(""))
+            return getResources().getString(R.string.search_input);
+        else
+            return getResources().getString(R.string.search_input_advanced) + " " + value;
+
+    }
+
+    private void showSnakeBar(String message){
+        Snackbar snackbar = Snackbar.make(fragmentSearchBinding.getRoot(),message,Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     /**
