@@ -189,6 +189,9 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+    /**
+     * This helper method is used to define the action of fetching data from the API by the keyword
+     */
     private void searchWithKeyword(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String searchKeyword = fragmentSearchBinding.searchInput.getText().toString();
@@ -224,7 +227,9 @@ public class SearchFragment extends Fragment {
         showHistory();
     }
 
-
+    /**
+     * This private helper method is used to show the history
+     */
     private void showHistory(){
         String title = getString(R.string.search_history_title);
         String content = getString(R.string.search_history_content);
@@ -240,8 +245,8 @@ public class SearchFragment extends Fragment {
     }
 
     /**
-     *
-     * @param message
+     * This private helper method is used to show a SnakeBar based on the pass-in message
+     * @param message the message to show
      */
     private void showSnakeBar(String message){
         Snackbar snackbar = Snackbar.make(fragmentSearchBinding.getRoot(),message,Snackbar.LENGTH_LONG);
