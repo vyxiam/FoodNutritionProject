@@ -1,4 +1,4 @@
-package com.cst2335.foodnutritionproject.Favorite;
+package com.cst2335.foodnutritionproject;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -8,11 +8,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cst2335.foodnutritionproject.Data.Food;
-import com.cst2335.foodnutritionproject.R;
+import com.cst2335.foodnutritionproject.Favorite.FavoriteViewDetail;
+import com.cst2335.foodnutritionproject.Favorite.FavoriteViewList;
+import com.cst2335.foodnutritionproject.Favorite.FavoriteViewModel;
 import com.cst2335.foodnutritionproject.SearchFragements.FoodDetails;
 import com.cst2335.foodnutritionproject.databinding.ActivityFavoriteOptionBinding;
 
-public class FavoriteOption extends AppCompatActivity implements FoodDetails {
+public class FavoriteOptionActivity extends AppCompatActivity implements FoodDetails {
     ActivityFavoriteOptionBinding binding;
 
     private FavoriteViewList fv;
@@ -69,6 +71,7 @@ public class FavoriteOption extends AppCompatActivity implements FoodDetails {
         bundle.putDouble("FAT", clickedFavorite.getFat());
         bundle.putDouble("FIBER", clickedFavorite.getFiber());
         bundle.putString("DESCRIPTION", clickedFavorite.getFoodContentsLabel());
+        bundle.putString("LABEL",clickedFavorite.getLabel());
 
 
         if (fl2 != null) {

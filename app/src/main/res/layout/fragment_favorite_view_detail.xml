@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:background="#009688"
     tools:context=".Favorite.FavoriteViewDetail">
 
@@ -40,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/foodTextView"
+        android:id="@+id/foodLable"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -143,7 +144,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/na"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -154,7 +155,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/na"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/caloriesText" />
 
@@ -165,7 +166,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/na"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/proteintext" />
 
@@ -176,7 +177,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/na"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/carbonhydrateText" />
 
@@ -187,17 +188,20 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/na"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/fatText" />
 
     <TextView
         android:id="@+id/descriptionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="86dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="28dp"
-        android:text="@string/desciptionTitle"
+        android:layout_marginEnd="30dp"
+        android:text="@string/descriptionTitle"
+        android:textColor="#FF5722"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 

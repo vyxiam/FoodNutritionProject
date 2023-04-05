@@ -12,12 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 
+import com.cst2335.foodnutritionproject.Data.Food;
 import com.cst2335.foodnutritionproject.R;
 import com.cst2335.foodnutritionproject.Utility.CustomViewUtility;
-import com.cst2335.foodnutritionproject.databinding.ActivityMainBinding;
-import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteBinding;
 import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBinding;
+
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +42,7 @@ public class FavoriteViewDetail extends Fragment {
     private String mParam2;
     FragmentFavoriteViewDetailBinding binding;
     private FavoriteViewModel viewModel;
+    ArrayList<Food> favoriteLists;
 
     /**
      * Use this factory method to create a new instance of
@@ -76,7 +82,9 @@ public class FavoriteViewDetail extends Fragment {
         View view=binding.getRoot();
 
         initialization();
+
         return view;
+
     }
     /**
      * This private method is used to initialize the main activity by setting up the logo, buttons
@@ -129,7 +137,8 @@ public class FavoriteViewDetail extends Fragment {
         double carbohydrate = bundle.getDouble("CARBOHYDRATE");
         double fat = bundle.getDouble("FAT");
         double fiber = bundle.getDouble("FIBER");
-        String description =bundle.getString("Description");
+        String description =bundle.getString("DESCRIPTION");
+        String foodlabel =bundle.getString("LABEL");
 
 
 
@@ -138,8 +147,10 @@ public class FavoriteViewDetail extends Fragment {
         binding.carbonhydrateText.setText(Double.toString(carbohydrate));
         binding.fatText.setText(Double.toString(fat));
         binding.fiberText.setText(Double.toString(fiber));
-        binding.descriptionText.setText(description);
+        binding.descriptionText.setText("Description"+description);
+        binding.foodLable.setText(foodlabel);
     }
+
 
     public void setViewModel(FavoriteViewModel viewModel) {
         this.viewModel = viewModel;
