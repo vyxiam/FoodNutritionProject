@@ -34,6 +34,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 /**
+ * This class represent for recyclerView inside Favorite View List fragments and some actions inside
  * A simple {@link Fragment} subclass.
  * Use the {@link FavoriteViewList#newInstance} factory method to
  * create an instance of this fragment.
@@ -251,15 +252,22 @@ public class FavoriteViewList extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(binding.favoriteToolbar);
     }
-
+    /**
+     * Create menu inside toolbar
+     */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.favorite_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    /**
+     *  notify position for list view to update new list view and database
+     * @param position position for unfavorite button
+     */
     public void notifyAdapter(int position){
-        favoriteLists.remove(position);
+        if (favoriteLists.size()!= 0)
+            favoriteLists.remove(position);
         myAdapter.notifyDataSetChanged();
     }
 }

@@ -27,6 +27,8 @@ import com.cst2335.foodnutritionproject.databinding.FragmentFavoriteViewDetailBi
 
 
 /**
+ * This class represent for another fragment apter click the the view in Favorite View List.
+ * It contain unfavorite button, and also call bundle to receive information
  * A simple {@link Fragment} subclass.
  * Use the {@link FavoriteViewDetail#newInstance} factory method to
  * create an instance of this fragment.
